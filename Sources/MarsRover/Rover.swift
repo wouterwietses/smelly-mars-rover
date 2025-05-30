@@ -1,10 +1,12 @@
-private let headingNorth: Character = "N"
-private let headingEast: Character = "E"
-private let headingSouth: Character = "S"
-private let headingWest: Character = "W"
-
 private let defaultXCoordinate = 0
 private let defaultYCoordinate = 0
+
+enum Heading: Character {
+    case north = "N"
+    case east = "E"
+    case south = "S"
+    case west = "W"
+}
 
 class RoverState {
     private let startingPositionSeparator: Character = " "
@@ -14,7 +16,7 @@ class RoverState {
 
     private var xCoordinate: Int = defaultXCoordinate
     private var yCoordinate: Int = defaultYCoordinate
-    private var heading: Character = headingNorth
+    private var heading: Heading = .north
 
     init(startingPosition: String) {
         let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
@@ -23,42 +25,42 @@ class RoverState {
                 Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate
             yCoordinate =
                 Int(splitStartingPosition[yCoordinatePostion]) ?? defaultYCoordinate
-            heading = splitStartingPosition[headingPosition].first ?? headingNorth
+            heading =
+                Heading(
+                    rawValue: splitStartingPosition[headingPosition].first ?? Heading.north.rawValue
+                ) ?? .north
         }
     }
 
     func turnLeft() {
         switch heading {
-        case headingEast: heading = headingNorth
-        case headingNorth: heading = headingWest
-        case headingWest: heading = headingSouth
-        case headingSouth: heading = headingEast
-        default: break
+        case .east: heading = .north
+        case .north: heading = .west
+        case .west: heading = .south
+        case .south: heading = .east
         }
     }
 
     func turnRight() {
         switch heading {
-        case headingEast: heading = headingSouth
-        case headingSouth: heading = headingWest
-        case headingWest: heading = headingNorth
-        case headingNorth: heading = headingEast
-        default: break
+        case .east: heading = .south
+        case .south: heading = .west
+        case .west: heading = .north
+        case .north: heading = .east
         }
     }
 
     func move() {
         switch heading {
-        case headingEast: xCoordinate += 1
-        case headingSouth: yCoordinate -= 1
-        case headingWest: xCoordinate -= 1
-        case headingNorth: yCoordinate += 1
-        default: break
+        case .east: xCoordinate += 1
+        case .south: yCoordinate -= 1
+        case .west: xCoordinate -= 1
+        case .north: yCoordinate += 1
         }
     }
 
     func currentPosition() -> String {
-        "\(xCoordinate) \(yCoordinate) \(heading)"
+        "\(xCoordinate) \(yCoordinate) \(heading.rawValue)"
     }
 }
 

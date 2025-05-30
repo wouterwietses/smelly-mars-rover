@@ -26,3 +26,7 @@
 ## 🍅 Pomodoro 4
 
 - 🚧 reorder responsibilities
+
+## 🍅 Pomodoro 5
+
+- 🚧 reorder responsibilities
