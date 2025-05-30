@@ -14,7 +14,7 @@ class RoverState {
 
     private var xCoordinate: Int = defaultXCoordinate
     private var yCoordinate: Int = defaultYCoordinate
-    var heading: Character = headingNorth
+    private var heading: Character = headingNorth
 
     init(startingPosition: String) {
         let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
