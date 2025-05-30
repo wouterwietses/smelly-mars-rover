@@ -5,14 +5,14 @@ class RoverState {
 }
 
 class Rover {
-    private var rs = RoverState()
+    private var roverState = RoverState()
 
     init(_ p: String = "") {
         let s = p.split(separator: " ")
         if s.count >= 3 {
-            rs.xCoordinate = Int(s[0]) ?? 0
-            rs.yCoordinate = Int(s[1]) ?? 0
-            rs.heading = s[2].first ?? "N"
+            roverState.xCoordinate = Int(s[0]) ?? 0
+            roverState.yCoordinate = Int(s[1]) ?? 0
+            roverState.heading = s[2].first ?? "N"
         }
     }
 
@@ -20,27 +20,27 @@ class Rover {
         for c in cms {
             switch c {
             case "L":
-                switch rs.heading {
-                case "E": rs.heading = "N"
-                case "N": rs.heading = "W"
-                case "W": rs.heading = "S"
-                case "S": rs.heading = "E"
+                switch roverState.heading {
+                case "E": roverState.heading = "N"
+                case "N": roverState.heading = "W"
+                case "W": roverState.heading = "S"
+                case "S": roverState.heading = "E"
                 default: break
                 }
             case "R":
-                switch rs.heading {
-                case "E": rs.heading = "S"
-                case "S": rs.heading = "W"
-                case "W": rs.heading = "N"
-                case "N": rs.heading = "E"
+                switch roverState.heading {
+                case "E": roverState.heading = "S"
+                case "S": roverState.heading = "W"
+                case "W": roverState.heading = "N"
+                case "N": roverState.heading = "E"
                 default: break
                 }
             case "M":
-                switch rs.heading {
-                case "E": rs.xCoordinate += 1
-                case "S": rs.yCoordinate -= 1
-                case "W": rs.xCoordinate -= 1
-                case "N": rs.yCoordinate += 1
+                switch roverState.heading {
+                case "E": roverState.xCoordinate += 1
+                case "S": roverState.yCoordinate -= 1
+                case "W": roverState.xCoordinate -= 1
+                case "N": roverState.yCoordinate += 1
                 default: break
                 }
             default:
@@ -54,6 +54,6 @@ class Rover {
     }
 
     func pos() -> String {
-        "\(rs.xCoordinate) \(rs.yCoordinate) \(rs.heading)"
+        "\(roverState.xCoordinate) \(roverState.yCoordinate) \(roverState.heading)"
     }
 }
