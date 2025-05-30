@@ -7,8 +7,8 @@ class RoverState {
 class Rover {
     private var roverState = RoverState()
 
-    init(_ p: String = "") {
-        let s = p.split(separator: " ")
+    init(_ startingPosition: String = "") {
+        let s = startingPosition.split(separator: " ")
         if s.count >= 3 {
             roverState.xCoordinate = Int(s[0]) ?? 0
             roverState.yCoordinate = Int(s[1]) ?? 0
