@@ -39,13 +39,7 @@ class Rover {
         for command in instructions {
             switch command {
             case turnLeftCommand:
-                switch roverState.heading {
-                case headingEast: roverState.heading = headingNorth
-                case headingNorth: roverState.heading = headingWest
-                case headingWest: roverState.heading = headingSouth
-                case headingSouth: roverState.heading = headingEast
-                default: break
-                }
+                executeTurnLeftCommand()
             case turnRightCommand:
                 switch roverState.heading {
                 case headingEast: roverState.heading = headingSouth
@@ -65,6 +59,16 @@ class Rover {
             default:
                 break
             }
+        }
+    }
+
+    private func executeTurnLeftCommand() {
+        switch roverState.heading {
+        case headingEast: roverState.heading = headingNorth
+        case headingNorth: roverState.heading = headingWest
+        case headingWest: roverState.heading = headingSouth
+        case headingSouth: roverState.heading = headingEast
+        default: break
         }
     }
 
