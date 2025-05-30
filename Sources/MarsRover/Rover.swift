@@ -1,7 +1,7 @@
 class RoverState {
     var xCoordinate: Int = 0
     var yCoordinate: Int = 0
-    var dd: Character = "N"
+    var heading: Character = "N"
 }
 
 class Rover {
@@ -12,7 +12,7 @@ class Rover {
         if s.count >= 3 {
             rs.xCoordinate = Int(s[0]) ?? 0
             rs.yCoordinate = Int(s[1]) ?? 0
-            rs.dd = s[2].first ?? "N"
+            rs.heading = s[2].first ?? "N"
         }
     }
 
@@ -20,23 +20,23 @@ class Rover {
         for c in cms {
             switch c {
             case "L":
-                switch rs.dd {
-                case "E": rs.dd = "N"
-                case "N": rs.dd = "W"
-                case "W": rs.dd = "S"
-                case "S": rs.dd = "E"
+                switch rs.heading {
+                case "E": rs.heading = "N"
+                case "N": rs.heading = "W"
+                case "W": rs.heading = "S"
+                case "S": rs.heading = "E"
                 default: break
                 }
             case "R":
-                switch rs.dd {
-                case "E": rs.dd = "S"
-                case "S": rs.dd = "W"
-                case "W": rs.dd = "N"
-                case "N": rs.dd = "E"
+                switch rs.heading {
+                case "E": rs.heading = "S"
+                case "S": rs.heading = "W"
+                case "W": rs.heading = "N"
+                case "N": rs.heading = "E"
                 default: break
                 }
             case "M":
-                switch rs.dd {
+                switch rs.heading {
                 case "E": rs.xCoordinate += 1
                 case "S": rs.yCoordinate -= 1
                 case "W": rs.xCoordinate -= 1
@@ -54,6 +54,6 @@ class Rover {
     }
 
     func pos() -> String {
-        "\(rs.xCoordinate) \(rs.yCoordinate) \(rs.dd)"
+        "\(rs.xCoordinate) \(rs.yCoordinate) \(rs.heading)"
     }
 }
