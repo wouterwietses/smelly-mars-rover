@@ -1,11 +1,44 @@
-private let defaultXCoordinate = 0
-private let defaultYCoordinate = 0
-
 enum Heading: Character {
     case north = "N"
     case east = "E"
     case south = "S"
     case west = "W"
+}
+
+struct Coordinate {
+    private let defaultXCoordinate = 0
+    private let defaultYCoordinate = 0
+    // swiftlint:disable identifier_name
+    private var x: Int
+    private var y: Int
+    // swiftlint:enable identifier_name
+
+    init() {
+        x = defaultXCoordinate
+        y = defaultYCoordinate
+    }
+
+    init(xCoordinate: String.SubSequence, yCoordinate: String.SubSequence) {
+        x = Int(xCoordinate) ?? defaultXCoordinate
+        y = Int(yCoordinate) ?? defaultYCoordinate
+    }
+
+    mutating func move(to heading: Heading) {
+        switch heading {
+        case .east:
+            x += 1
+        case .south:
+            y -= 1
+        case .west:
+            x -= 1
+        case .north:
+            y += 1
+        }
+    }
+
+    func position() -> String {
+        "\(x) \(y)"
+    }
 }
 
 class RoverState {
@@ -28,22 +61,27 @@ class RoverState {
     private let yCoordinatePostion = 1
     private let headingPosition = 2
 
-    private var xCoordinate: Int = defaultXCoordinate
-    private var yCoordinate: Int = defaultYCoordinate
-    private var heading: Heading = .north
+    private var coordinate: Coordinate
+    private var heading: Heading
 
     init(startingPosition: String) {
         let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
-        if splitStartingPosition.count >= 3 {
-            xCoordinate =
-                Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate
-            yCoordinate =
-                Int(splitStartingPosition[yCoordinatePostion]) ?? defaultYCoordinate
-            heading =
-                Heading(
-                    rawValue: splitStartingPosition[headingPosition].first ?? Heading.north.rawValue
-                ) ?? .north
+
+        guard splitStartingPosition.count >= 3 else {
+            coordinate = Coordinate()
+            heading = .north
+            return
         }
+
+        coordinate = Coordinate(
+            xCoordinate: splitStartingPosition[xCoordinatePosition],
+            yCoordinate: splitStartingPosition[yCoordinatePostion]
+        )
+
+        heading =
+            Heading(
+                rawValue: splitStartingPosition[headingPosition].first ?? Heading.north.rawValue
+            ) ?? .north
     }
 
     func turnLeft() {
@@ -55,16 +93,11 @@ class RoverState {
     }
 
     func move() {
-        switch heading {
-        case .east: xCoordinate += 1
-        case .south: yCoordinate -= 1
-        case .west: xCoordinate -= 1
-        case .north: yCoordinate += 1
-        }
+        coordinate.move(to: heading)
     }
 
     func currentPosition() -> String {
-        "\(xCoordinate) \(yCoordinate) \(heading.rawValue)"
+        "\(coordinate.position()) \(heading.rawValue)"
     }
 }
 
