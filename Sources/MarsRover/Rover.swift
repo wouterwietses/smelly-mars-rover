@@ -62,11 +62,13 @@ class RoverState {
     }
 }
 
-class Rover {
-    private let turnLeftCommand: Character = "L"
-    private let turnRightCommand: Character = "R"
-    private let moveCommand: Character = "M"
+enum Command: Character {
+    case left = "L"
+    case right = "R"
+    case move = "M"
+}
 
+class Rover {
     private let roverState: RoverState
 
     init(_ startingPosition: String = "") {
@@ -74,18 +76,18 @@ class Rover {
     }
 
     func go(_ instructions: String) {
-        for command in instructions {
-            switch command {
-            case turnLeftCommand:
-                roverState.turnLeft()
-            case turnRightCommand:
-                roverState.turnRight()
-            case moveCommand:
-                roverState.move()
-            default:
-                break
+        instructions
+            .compactMap { Command(rawValue: $0) }
+            .forEach { [weak self] command in
+                switch command {
+                case .left:
+                    self?.roverState.turnLeft()
+                case .right:
+                    self?.roverState.turnRight()
+                case .move:
+                    self?.roverState.move()
+                }
             }
-        }
     }
 
     func pos() -> String {
