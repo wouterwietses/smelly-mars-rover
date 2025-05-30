@@ -1,5 +1,7 @@
 # Mars Rover - Swift Implementation
 
+[![codecov](https://codecov.io/gh/wouterwietses/smelly-mars-rover/graph/badge.svg)](https://codecov.io/gh/wouterwietses/smelly-mars-rover)
+
 This is the Swift implementation of the Mars Rover kata using Swift Package Manager and XCTest framework.
 
 ## Requirements
