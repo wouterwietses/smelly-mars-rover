@@ -3,8 +3,10 @@ private let headingEast: Character = "E"
 private let headingSouth: Character = "S"
 private let headingWest: Character = "W"
 
+private let defaultXCoordinate = 0
+
 class RoverState {
-    var xCoordinate: Int = 0
+    var xCoordinate: Int = defaultXCoordinate
     var yCoordinate: Int = 0
     var heading: Character = headingNorth
 }
@@ -24,7 +26,8 @@ class Rover {
     init(_ startingPosition: String = "") {
         let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
         if splitStartingPosition.count >= 3 {
-            roverState.xCoordinate = Int(splitStartingPosition[xCoordinatePosition]) ?? 0
+            roverState.xCoordinate =
+                Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate
             roverState.yCoordinate = Int(splitStartingPosition[yCoordinatePostion]) ?? 0
             roverState.heading = splitStartingPosition[headingPosition].first ?? headingNorth
         }
