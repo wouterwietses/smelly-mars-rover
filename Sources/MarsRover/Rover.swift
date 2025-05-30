@@ -5,15 +5,15 @@ class RoverState {
 }
 
 class Rover {
-    private static let startingPositionSeparator: Character = " "
+    private let startingPositionSeparator: Character = " "
+    private let xCoordinatePosition = 0
 
     private var roverState = RoverState()
 
     init(_ startingPosition: String = "") {
-        let splitStartingPosition = startingPosition.split(
-            separator: Rover.startingPositionSeparator)
+        let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
         if splitStartingPosition.count >= 3 {
-            roverState.xCoordinate = Int(splitStartingPosition[0]) ?? 0
+            roverState.xCoordinate = Int(splitStartingPosition[xCoordinatePosition]) ?? 0
             roverState.yCoordinate = Int(splitStartingPosition[1]) ?? 0
             roverState.heading = splitStartingPosition[2].first ?? "N"
         }
