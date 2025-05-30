@@ -20,4 +20,5 @@
 ## 🍅 Pomodoro 3
 
 - ✅ Refactor readability
-- 🚧 reduce complexity
+- ✅ reduce complexity
+- 🚧 reorder responsibilities
