@@ -10,6 +10,10 @@ class RoverState {
     var xCoordinate: Int = defaultXCoordinate
     var yCoordinate: Int = defaultYCoordinate
     var heading: Character = headingNorth
+
+    func currentPosition() -> String {
+        "\(xCoordinate) \(yCoordinate) \(heading)"
+    }
 }
 
 class Rover {
@@ -81,6 +85,6 @@ class Rover {
     }
 
     func pos() -> String {
-        "\(roverState.xCoordinate) \(roverState.yCoordinate) \(roverState.heading)"
+        roverState.currentPosition()
     }
 }
