@@ -21,7 +21,7 @@ jobs:
           PROFDATA_PATH=$(dirname "$CODECOV_PATH")/default.profdata
 
           ALL_OBJECT_FILES=$(find .build -name "*.o" -type f)
-          SOURCE_OBJECT_FILES=$(echo "$ALL_OBJECT_FILES" | grep "smelly-mars-rover.build")
+          SOURCE_OBJECT_FILES=$(echo "$ALL_OBJECT_FILES" | grep "MarsRover.build")
 
           xcrun llvm-cov report -instr-profile $PROFDATA_PATH $SOURCE_OBJECT_FILES
 
