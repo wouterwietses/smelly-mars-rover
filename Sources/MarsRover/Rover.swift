@@ -11,6 +11,16 @@ class RoverState {
     var yCoordinate: Int = defaultYCoordinate
     var heading: Character = headingNorth
 
+    func move() {
+        switch heading {
+        case headingEast: xCoordinate += 1
+        case headingSouth: yCoordinate -= 1
+        case headingWest: xCoordinate -= 1
+        case headingNorth: yCoordinate += 1
+        default: break
+        }
+    }
+
     func currentPosition() -> String {
         "\(xCoordinate) \(yCoordinate) \(heading)"
     }
@@ -47,7 +57,7 @@ class Rover {
             case turnRightCommand:
                 executeTurnRightCommand()
             case moveCommand:
-                executeMoveCommand()
+                roverState.move()
             default:
                 break
             }
@@ -70,16 +80,6 @@ class Rover {
         case headingSouth: roverState.heading = headingWest
         case headingWest: roverState.heading = headingNorth
         case headingNorth: roverState.heading = headingEast
-        default: break
-        }
-    }
-
-    private func executeMoveCommand() {
-        switch roverState.heading {
-        case headingEast: roverState.xCoordinate += 1
-        case headingSouth: roverState.yCoordinate -= 1
-        case headingWest: roverState.xCoordinate -= 1
-        case headingNorth: roverState.yCoordinate += 1
         default: break
         }
     }
