@@ -16,3 +16,7 @@
 ## 🍅 Pomodoro 2
 
 - 🚧 Refactor readability
+
+## 🍅 Pomodoro 3
+
+- 🚧 Refactor readability

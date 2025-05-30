@@ -15,6 +15,8 @@ class Rover {
     private let yCoordinatePostion = 1
     private let headingPosition = 2
 
+    private let turnLeftCommand: Character = "L"
+
     private var roverState = RoverState()
 
     init(_ startingPosition: String = "") {
@@ -29,7 +31,7 @@ class Rover {
     func go(_ instructions: String) {
         for command in instructions {
             switch command {
-            case "L":
+            case turnLeftCommand:
                 switch roverState.heading {
                 case headingEast: roverState.heading = headingNorth
                 case headingNorth: roverState.heading = headingWest
