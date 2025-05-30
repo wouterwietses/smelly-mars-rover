@@ -1,0 +1,31 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - uses: actions/checkout@v4
+      - name: Build
+        run: swift build
+      - name: Run tests
+        run: swift test --enable-code-coverage
+      - name: Generate coverage report
+        run: |
+          CODECOV_PATH=$(swift test --show-codecov-path)
+          PROFDATA_PATH=$(dirname "$CODECOV_PATH")/default.profdata
+
+          ALL_OBJECT_FILES=$(find .build -name "*.o" -type f)
+          SOURCE_OBJECT_FILES=$(echo "$ALL_OBJECT_FILES" | grep "smelly-mars-rover.build")
+
+          xcrun llvm-cov report -instr-profile $PROFDATA_PATH $SOURCE_OBJECT_FILES
+
+          mkdir coverage
+          xcrun llvm-cov export --format="lcov" -instr-profile $PROFDATA_PATH $SOURCE_OBJECT_FILES >> coverage/lcov.info
+      - name: Upload results to Codecov 
+        uses: codecov/codecov-action@v5
