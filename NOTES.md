@@ -22,3 +22,7 @@
 - ✅ Refactor readability
 - ✅ reduce complexity
 - 🚧 reorder responsibilities
+
+## 🍅 Pomodoro 4
+
+- 🚧 reorder responsibilities

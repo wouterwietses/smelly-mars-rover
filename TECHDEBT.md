@@ -6,7 +6,7 @@
 
 - [ ] make heading private in RoverState
   - [X] move turn left function to RoverState
-  - [ ] move turn right function to RoverState
+  - [X] move turn right function to RoverState
 
 ## Done
 
