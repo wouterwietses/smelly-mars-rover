@@ -62,12 +62,6 @@ class RoverState {
     }
 }
 
-enum Command: Character {
-    case left = "L"
-    case right = "R"
-    case move = "M"
-}
-
 class Rover {
     private let roverState: RoverState
 
