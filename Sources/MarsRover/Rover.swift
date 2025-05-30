@@ -16,6 +16,13 @@ class RoverState {
         .south: .east
     ]
 
+    private let rightRotationMap: [Heading: Heading] = [
+        .east: .south,
+        .south: .west,
+        .west: .north,
+        .north: .east
+    ]
+
     private let startingPositionSeparator: Character = " "
     private let xCoordinatePosition = 0
     private let yCoordinatePostion = 1
@@ -44,12 +51,7 @@ class RoverState {
     }
 
     func turnRight() {
-        switch heading {
-        case .east: heading = .south
-        case .south: heading = .west
-        case .west: heading = .north
-        case .north: heading = .east
-        }
+        heading = rightRotationMap[heading]!
     }
 
     func move() {
