@@ -9,6 +9,13 @@ enum Heading: Character {
 }
 
 class RoverState {
+    private let leftRotationMap: [Heading: Heading] = [
+        .east: .north,
+        .north: .west,
+        .west: .south,
+        .south: .east
+    ]
+
     private let startingPositionSeparator: Character = " "
     private let xCoordinatePosition = 0
     private let yCoordinatePostion = 1
@@ -33,12 +40,7 @@ class RoverState {
     }
 
     func turnLeft() {
-        switch heading {
-        case .east: heading = .north
-        case .north: heading = .west
-        case .west: heading = .south
-        case .south: heading = .east
-        }
+        heading = leftRotationMap[heading]!
     }
 
     func turnRight() {
