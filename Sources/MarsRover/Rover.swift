@@ -16,8 +16,8 @@ class Rover {
         }
     }
 
-    func go(_ cms: String) {
-        for c in cms {
+    func go(_ instructions: String) {
+        for c in instructions {
             switch c {
             case "L":
                 switch roverState.heading {
