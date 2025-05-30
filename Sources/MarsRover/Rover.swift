@@ -17,8 +17,8 @@ class Rover {
     }
 
     func go(_ instructions: String) {
-        for c in instructions {
-            switch c {
+        for command in instructions {
+            switch command {
             case "L":
                 switch roverState.heading {
                 case "E": roverState.heading = "N"
