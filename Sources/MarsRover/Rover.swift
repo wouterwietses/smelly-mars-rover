@@ -16,6 +16,7 @@ class Rover {
     private let headingPosition = 2
 
     private let turnLeftCommand: Character = "L"
+    private let turnRightCommand: Character = "R"
 
     private var roverState = RoverState()
 
@@ -39,7 +40,7 @@ class Rover {
                 case headingSouth: roverState.heading = headingEast
                 default: break
                 }
-            case "R":
+            case turnRightCommand:
                 switch roverState.heading {
                 case headingEast: roverState.heading = headingSouth
                 case headingSouth: roverState.heading = headingWest
