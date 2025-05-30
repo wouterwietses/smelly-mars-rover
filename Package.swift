@@ -1,18 +1,24 @@
-// swift-tools-version:6.1
+// swift-tools-version:5.5
 import PackageDescription
 
 let package = Package(
-    name: "smelly-mars-rover",
+    name: "MarsRover",
     products: [
-        .executable(name: "smelly-mars-rover", targets: ["smelly-mars-rover"]),
+        .library(
+            name: "MarsRover",
+            targets: ["MarsRover"]
+        )
     ],
-    dependencies: [],
     targets: [
-        .executableTarget(
-            name: "smelly-mars-rover",
-            dependencies: []),
+        .target(
+            name: "MarsRover",
+            dependencies: [],
+            path: "Sources/MarsRover"
+        ),
         .testTarget(
-            name: "smelly-mars-roverTests",
-            dependencies: ["smelly-mars-rover"]),
+            name: "MarsRoverTests",
+            dependencies: ["MarsRover"],
+            path: "Tests/MarsRoverTests"
+        )
     ]
 )
