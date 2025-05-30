@@ -9,6 +9,10 @@
 
 ## 🍅 Pomodoro 1
 
-- [x] Fix code coverage issues on remote
-  - [x] Refactor tests to use modern testing framework
-- [ ] Refactor readability
+- ✅ Fix code coverage issues on remote
+  - ✅ Refactor tests to use modern testing framework
+- 🚧 Refactor readability
+
+## 🍅 Pomodoro 2
+
+- 🚧 Refactor readability

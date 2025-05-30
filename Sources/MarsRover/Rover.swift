@@ -8,11 +8,11 @@ class Rover {
     private var roverState = RoverState()
 
     init(_ startingPosition: String = "") {
-        let s = startingPosition.split(separator: " ")
-        if s.count >= 3 {
-            roverState.xCoordinate = Int(s[0]) ?? 0
-            roverState.yCoordinate = Int(s[1]) ?? 0
-            roverState.heading = s[2].first ?? "N"
+        let splitStartingPosition = startingPosition.split(separator: " ")
+        if splitStartingPosition.count >= 3 {
+            roverState.xCoordinate = Int(splitStartingPosition[0]) ?? 0
+            roverState.yCoordinate = Int(splitStartingPosition[1]) ?? 0
+            roverState.heading = splitStartingPosition[2].first ?? "N"
         }
     }
 
