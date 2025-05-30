@@ -1,5 +1,6 @@
 private let headingNorth: Character = "N"
 private let headingEast: Character = "E"
+private let headingSouth: Character = "S"
 
 class RoverState {
     var xCoordinate: Int = 0
@@ -31,14 +32,14 @@ class Rover {
                 switch roverState.heading {
                 case headingEast: roverState.heading = headingNorth
                 case headingNorth: roverState.heading = "W"
-                case "W": roverState.heading = "S"
-                case "S": roverState.heading = headingEast
+                case "W": roverState.heading = headingSouth
+                case headingSouth: roverState.heading = headingEast
                 default: break
                 }
             case "R":
                 switch roverState.heading {
-                case headingEast: roverState.heading = "S"
-                case "S": roverState.heading = "W"
+                case headingEast: roverState.heading = headingSouth
+                case headingSouth: roverState.heading = "W"
                 case "W": roverState.heading = headingNorth
                 case headingNorth: roverState.heading = headingEast
                 default: break
@@ -46,7 +47,7 @@ class Rover {
             case "M":
                 switch roverState.heading {
                 case headingEast: roverState.xCoordinate += 1
-                case "S": roverState.yCoordinate -= 1
+                case headingSouth: roverState.yCoordinate -= 1
                 case "W": roverState.xCoordinate -= 1
                 case headingNorth: roverState.yCoordinate += 1
                 default: break
