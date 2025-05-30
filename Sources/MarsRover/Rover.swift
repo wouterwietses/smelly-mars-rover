@@ -7,9 +7,25 @@ private let defaultXCoordinate = 0
 private let defaultYCoordinate = 0
 
 class RoverState {
-    var xCoordinate: Int = defaultXCoordinate
+    private let startingPositionSeparator: Character = " "
+    private let xCoordinatePosition = 0
+    private let yCoordinatePostion = 1
+    private let headingPosition = 2
+
+    private var xCoordinate: Int = defaultXCoordinate
     var yCoordinate: Int = defaultYCoordinate
     var heading: Character = headingNorth
+
+    init(startingPosition: String) {
+        let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
+        if splitStartingPosition.count >= 3 {
+            xCoordinate =
+                Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate
+            yCoordinate =
+                Int(splitStartingPosition[yCoordinatePostion]) ?? defaultYCoordinate
+            heading = splitStartingPosition[headingPosition].first ?? headingNorth
+        }
+    }
 
     func move() {
         switch heading {
@@ -27,26 +43,14 @@ class RoverState {
 }
 
 class Rover {
-    private let startingPositionSeparator: Character = " "
-    private let xCoordinatePosition = 0
-    private let yCoordinatePostion = 1
-    private let headingPosition = 2
-
     private let turnLeftCommand: Character = "L"
     private let turnRightCommand: Character = "R"
     private let moveCommand: Character = "M"
 
-    private var roverState = RoverState()
+    private let roverState: RoverState
 
     init(_ startingPosition: String = "") {
-        let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
-        if splitStartingPosition.count >= 3 {
-            roverState.xCoordinate =
-                Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate
-            roverState.yCoordinate =
-                Int(splitStartingPosition[yCoordinatePostion]) ?? defaultYCoordinate
-            roverState.heading = splitStartingPosition[headingPosition].first ?? headingNorth
-        }
+        roverState = RoverState(startingPosition: startingPosition)
     }
 
     func go(_ instructions: String) {
