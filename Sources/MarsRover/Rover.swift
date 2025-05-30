@@ -7,6 +7,7 @@ class RoverState {
 class Rover {
     private let startingPositionSeparator: Character = " "
     private let xCoordinatePosition = 0
+    private let yCoordinatePostion = 1
 
     private var roverState = RoverState()
 
@@ -14,7 +15,7 @@ class Rover {
         let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
         if splitStartingPosition.count >= 3 {
             roverState.xCoordinate = Int(splitStartingPosition[xCoordinatePosition]) ?? 0
-            roverState.yCoordinate = Int(splitStartingPosition[1]) ?? 0
+            roverState.yCoordinate = Int(splitStartingPosition[yCoordinatePostion]) ?? 0
             roverState.heading = splitStartingPosition[2].first ?? "N"
         }
     }
