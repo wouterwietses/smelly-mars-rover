@@ -8,3 +8,7 @@
 - ⚠️ TODO
 
 ## 🍅 Pomodoro 1
+
+- [x] Fix code coverage issues on remote
+  - [x] Refactor tests to use modern testing framework
+- [ ] Refactor readability
