@@ -49,10 +49,6 @@ class Rover {
         }
     }
 
-    func g(_ z: Character) {
-        go(String(z))
-    }
-
     func pos() -> String {
         "\(roverState.xCoordinate) \(roverState.yCoordinate) \(roverState.heading)"
     }
