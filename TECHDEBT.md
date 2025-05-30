@@ -2,7 +2,6 @@
 
 ## To do
 
-- [ ] make yCoordinate private in RoverState
 - [ ] make heading private in RoverState
 
 ## Doing
@@ -14,3 +13,5 @@
   - [X] move parsing of starting position to RoverState initializer
   - [X] introduce move function in RoverState
   - [X] move printing of current position to RoverState
+- [x] make yCoordinate private in RoverState
+

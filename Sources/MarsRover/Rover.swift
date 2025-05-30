@@ -13,7 +13,7 @@ class RoverState {
     private let headingPosition = 2
 
     private var xCoordinate: Int = defaultXCoordinate
-    var yCoordinate: Int = defaultYCoordinate
+    private var yCoordinate: Int = defaultYCoordinate
     var heading: Character = headingNorth
 
     init(startingPosition: String) {
