@@ -13,11 +13,6 @@ struct Coordinate {
     private var y: Int
     // swiftlint:enable identifier_name
 
-    init() {
-        x = defaultXCoordinate
-        y = defaultYCoordinate
-    }
-
     init(xCoordinate: String.SubSequence, yCoordinate: String.SubSequence) {
         x = Int(xCoordinate) ?? defaultXCoordinate
         y = Int(yCoordinate) ?? defaultYCoordinate
@@ -66,12 +61,6 @@ class RoverState {
 
     init(startingPosition: String) {
         let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
-
-        guard splitStartingPosition.count >= 3 else {
-            coordinate = Coordinate()
-            heading = .north
-            return
-        }
 
         coordinate = Coordinate(
             xCoordinate: splitStartingPosition[xCoordinatePosition],
