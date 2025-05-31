@@ -35,6 +35,32 @@ struct Coordinate {
     }
 }
 
+enum StartingPositionParser {
+    private static let defaultXCoordinate = 0
+    private static let defaultYCoordinate = 0
+
+    private static let startingPositionSeparator: Character = " "
+    private static let xCoordinatePosition = 0
+    private static let yCoordinatePostion = 1
+    private static let headingPosition = 2
+
+    static func parse(startingPosition: String) -> (coordinate: Coordinate, heading: Heading) {
+        let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
+
+        let coordinate = Coordinate(
+            x: Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate,
+            y: Int(splitStartingPosition[yCoordinatePostion]) ?? defaultYCoordinate
+        )
+
+        let heading =
+            Heading(
+                rawValue: splitStartingPosition[headingPosition].first ?? Heading.north.rawValue
+            ) ?? .north
+
+        return (coordinate, heading)
+    }
+}
+
 class RoverState {
     private let leftRotationMap: [Heading: Heading] = [
         .east: .north,
@@ -50,29 +76,15 @@ class RoverState {
         .north: .east
     ]
 
-    private let defaultXCoordinate = 0
-    private let defaultYCoordinate = 0
-
-    private let startingPositionSeparator: Character = " "
-    private let xCoordinatePosition = 0
-    private let yCoordinatePostion = 1
-    private let headingPosition = 2
-
     private var coordinate: Coordinate
     private var heading: Heading
 
     init(startingPosition: String) {
-        let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
+        let parsedStartingPosition = StartingPositionParser.parse(
+            startingPosition: startingPosition)
 
-        coordinate = Coordinate(
-            x: Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate,
-            y: Int(splitStartingPosition[yCoordinatePostion]) ?? defaultYCoordinate
-        )
-
-        heading =
-            Heading(
-                rawValue: splitStartingPosition[headingPosition].first ?? Heading.north.rawValue
-            ) ?? .north
+        coordinate = parsedStartingPosition.coordinate
+        heading = parsedStartingPosition.heading
     }
 
     func turnLeft() {
