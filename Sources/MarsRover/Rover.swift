@@ -6,17 +6,16 @@ enum Heading: Character {
 }
 
 struct Coordinate {
-    private let defaultXCoordinate = 0
-    private let defaultYCoordinate = 0
     // swiftlint:disable identifier_name
     private var x: Int
     private var y: Int
-    // swiftlint:enable identifier_name
 
-    init(xCoordinate: String.SubSequence, yCoordinate: String.SubSequence) {
-        x = Int(xCoordinate) ?? defaultXCoordinate
-        y = Int(yCoordinate) ?? defaultYCoordinate
+    init(x: Int, y: Int) {
+        self.x = x
+        self.y = y
     }
+
+    // swiftlint:enable identifier_name
 
     mutating func move(to heading: Heading) {
         switch heading {
@@ -51,6 +50,9 @@ class RoverState {
         .north: .east
     ]
 
+    private let defaultXCoordinate = 0
+    private let defaultYCoordinate = 0
+
     private let startingPositionSeparator: Character = " "
     private let xCoordinatePosition = 0
     private let yCoordinatePostion = 1
@@ -63,8 +65,8 @@ class RoverState {
         let splitStartingPosition = startingPosition.split(separator: startingPositionSeparator)
 
         coordinate = Coordinate(
-            xCoordinate: splitStartingPosition[xCoordinatePosition],
-            yCoordinate: splitStartingPosition[yCoordinatePostion]
+            x: Int(splitStartingPosition[xCoordinatePosition]) ?? defaultXCoordinate,
+            y: Int(splitStartingPosition[yCoordinatePostion]) ?? defaultYCoordinate
         )
 
         heading =
